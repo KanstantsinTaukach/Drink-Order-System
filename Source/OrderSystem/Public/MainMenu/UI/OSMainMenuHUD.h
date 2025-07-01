@@ -13,7 +13,7 @@ class ORDERSYSTEM_API AOSMainMenuHUD : public AHUD
 
     protected:
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
-    TSubclassOf<UUserWidget> MenuWidgetClass;
+    TSubclassOf<UUserWidget> StoreWidgetClass;
 
     virtual void BeginPlay() override;
 };

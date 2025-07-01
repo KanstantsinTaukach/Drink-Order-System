@@ -7,9 +7,9 @@ void AOSMainMenuHUD::BeginPlay()
 {
     Super::BeginPlay();
 
-    if (MenuWidgetClass)
+    if (StoreWidgetClass)
     {
-        const auto MenuWidget = CreateWidget<UUserWidget>(GetWorld(), MenuWidgetClass);
+        const auto MenuWidget = CreateWidget<UUserWidget>(GetWorld(), StoreWidgetClass);
         if (MenuWidget)
         {
             MenuWidget->AddToViewport();

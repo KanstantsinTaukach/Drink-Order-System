@@ -4,31 +4,26 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "OSMainMenuWidget.generated.h"
+#include "OSStoreWidget.generated.h"
 
 class UButton;
 class UWidgetSwitcher;
 
 UCLASS()
-class ORDERSYSTEM_API UOSMainMenuWidget : public UUserWidget
+class ORDERSYSTEM_API UOSStoreWidget : public UUserWidget
 {
     GENERATED_BODY()
 
 protected:
     UPROPERTY(meta = (BindWidget))
-    UButton* OpenOrderMenuButton;
+    UWidgetSwitcher* MenuSwitcher;
 
     UPROPERTY(meta = (BindWidget))
-    UButton* QuitMenuButton;
+    UButton* OpenMainMenuButton;
 
     virtual void NativeOnInitialized() override;
 
 private:
-    UWidgetSwitcher* ParentSwitcher;
-
     UFUNCTION()
-    void OnOpenOrderMenu();
-
-    UFUNCTION()
-    void OnQuitMenu();
+    void OnOpenMainMenu();
 };

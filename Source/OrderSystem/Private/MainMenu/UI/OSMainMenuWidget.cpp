@@ -2,8 +2,7 @@
 
 #include "MainMenu/UI/OSMainMenuWidget.h"
 #include "Components/Button.h"
-#include "Kismet/GameplayStatics.h"
-#include "Kismet/KismetSystemLibrary.h"
+#include "Components/WidgetSwitcher.h"
 
 void UOSMainMenuWidget::NativeOnInitialized()
 {
@@ -14,18 +13,29 @@ void UOSMainMenuWidget::NativeOnInitialized()
         OpenOrderMenuButton->OnClicked.AddDynamic(this, &UOSMainMenuWidget::OnOpenOrderMenu);
     }
 
-    if (QuitGameButton)
+    if (QuitMenuButton)
     {
-        QuitGameButton->OnClicked.AddDynamic(this, &UOSMainMenuWidget::OnQuitGame);
+        QuitMenuButton->OnClicked.AddDynamic(this, &UOSMainMenuWidget::OnQuitMenu);
+    }
+
+    if (UWidgetSwitcher* Switcher = Cast<UWidgetSwitcher>(GetParent()))
+    {
+        ParentSwitcher = Switcher;
     }
 }
 
-void UOSMainMenuWidget::OnOpenOrderMenu() 
+void UOSMainMenuWidget::OnOpenOrderMenu()
 {
-
+    if (ParentSwitcher)
+    {
+        ParentSwitcher->SetActiveWidgetIndex(2);
+    }
 }
 
-void UOSMainMenuWidget::OnQuitGame()
+void UOSMainMenuWidget::OnQuitMenu()
 {
-    UKismetSystemLibrary::QuitGame(this, GetOwningPlayer(), EQuitPreference::Quit, true);
+    if (ParentSwitcher)
+    {
+        ParentSwitcher->SetActiveWidgetIndex(0);
+    }
 }
