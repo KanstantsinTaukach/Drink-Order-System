@@ -45,10 +45,26 @@ void UOSOrderMenuWidget::NativeOnInitialized()
 
 void UOSOrderMenuWidget::OnOrder() 
 {
-    if (ParentSwitcher)
+    const FString SelectedDrink = SelectedDrinkComboBox->GetSelectedOption();
+    bool bHasSugar = AddSugarCheckBox->IsChecked();
+    bool bHasMilk = AddMilkCheckBox->IsChecked();
+
+    FString Summary = FString::Printf(TEXT("%s"), *SelectedDrink);
+
+    if (bHasSugar && bHasMilk)
     {
-        ParentSwitcher->SetActiveWidgetIndex(3);
+        Summary += TEXT(" with milk and sugar");
     }
+    else if (bHasSugar)
+    {
+        Summary += TEXT(" with milk");
+    }
+    else if (bHasMilk)
+    {
+        Summary += TEXT(" with sugar");
+    }
+
+    OnOrderConfirmed.Broadcast(Summary);
 }
 
 void UOSOrderMenuWidget::OnBackToMenu()

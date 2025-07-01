@@ -25,9 +25,14 @@ protected:
     virtual void NativeOnInitialized() override;
 
 private:
+    FString OrderSummary;
+
     UPROPERTY()
     TObjectPtr<UWidgetSwitcher> ParentSwitcher;
 
     UFUNCTION()
     void OnBackToMenu();
+
+public:
+    void SetOrderDetails(const FString& Summary);
 };

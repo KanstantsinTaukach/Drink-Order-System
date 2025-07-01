@@ -17,6 +17,11 @@ void UOSConfirmationWidget::NativeOnInitialized()
     {
         ParentSwitcher = Switcher;
     }
+
+    if (OrderSummaryText && !OrderSummary.IsEmpty())
+    {
+        OrderSummaryText->SetText(FText::FromString(OrderSummary));
+    }
 }
 
 void UOSConfirmationWidget::OnBackToMenu()
@@ -24,5 +29,15 @@ void UOSConfirmationWidget::OnBackToMenu()
     if (ParentSwitcher)
     {
         ParentSwitcher->SetActiveWidgetIndex(1);
+    }
+}
+
+void UOSConfirmationWidget::SetOrderDetails(const FString& Summary)
+{
+    OrderSummary = Summary;
+
+    if (OrderSummaryText)
+    {
+        OrderSummaryText->SetText(FText::FromString(Summary));
     }
 }
