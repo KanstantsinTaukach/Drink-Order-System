@@ -6,14 +6,19 @@
 #include "GameFramework/HUD.h"
 #include "OSMainMenuHUD.generated.h"
 
+class UOSStoreWidget;
+
 UCLASS()
 class ORDERSYSTEM_API AOSMainMenuHUD : public AHUD
 {
     GENERATED_BODY()
 
-    protected:
+protected:
     UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
-    TSubclassOf<UUserWidget> StoreWidgetClass;
+    TSubclassOf<UOSStoreWidget> StoreWidgetClass;
 
     virtual void BeginPlay() override;
+
+private:
+    TObjectPtr<UOSStoreWidget> StoreWidget;
 };

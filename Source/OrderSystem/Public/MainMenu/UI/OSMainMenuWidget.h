@@ -16,15 +16,15 @@ class ORDERSYSTEM_API UOSMainMenuWidget : public UUserWidget
 
 protected:
     UPROPERTY(meta = (BindWidget))
-    UButton* OpenOrderMenuButton;
+    TObjectPtr<UButton> OpenOrderMenuButton;
 
     UPROPERTY(meta = (BindWidget))
-    UButton* QuitMenuButton;
+    TObjectPtr<UButton> QuitMenuButton;
 
     virtual void NativeOnInitialized() override;
 
 private:
-    UWidgetSwitcher* ParentSwitcher;
+    TObjectPtr<UWidgetSwitcher> ParentSwitcher;
 
     UFUNCTION()
     void OnOpenOrderMenu();

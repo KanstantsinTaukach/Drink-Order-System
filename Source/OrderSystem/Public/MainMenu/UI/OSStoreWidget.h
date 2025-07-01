@@ -16,10 +16,10 @@ class ORDERSYSTEM_API UOSStoreWidget : public UUserWidget
 
 protected:
     UPROPERTY(meta = (BindWidget))
-    UWidgetSwitcher* MenuSwitcher;
+    TObjectPtr<UWidgetSwitcher> MenuSwitcher;
 
     UPROPERTY(meta = (BindWidget))
-    UButton* OpenMainMenuButton;
+    TObjectPtr<UButton> OpenMainMenuButton;
 
     virtual void NativeOnInitialized() override;
 

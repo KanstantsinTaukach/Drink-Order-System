@@ -18,24 +18,24 @@ class ORDERSYSTEM_API UOSOrderMenuWidget : public UUserWidget
 
 protected:
     UPROPERTY(meta = (BindWidget))
-    UComboBoxString* SelectedDrinkComboBox;
+    TObjectPtr<UComboBoxString> SelectedDrinkComboBox;
 
     UPROPERTY(meta = (BindWidget))
-    UCheckBox* AddSugarCheckBox;
+    TObjectPtr<UCheckBox> AddSugarCheckBox;
 
     UPROPERTY(meta = (BindWidget))
-    UCheckBox* AddMilkCheckBox;
+    TObjectPtr<UCheckBox> AddMilkCheckBox;
 
     UPROPERTY(meta = (BindWidget))
-    UButton* OrderButton;
+    TObjectPtr<UButton> OrderButton;
 
     UPROPERTY(meta = (BindWidget))
-    UButton* BackToMenuButton;
+    TObjectPtr<UButton> BackToMenuButton;
 
     virtual void NativeOnInitialized() override;
 
 private:
-    UWidgetSwitcher* ParentSwitcher;
+    TObjectPtr<UWidgetSwitcher> ParentSwitcher;
 
     UFUNCTION()
     void OnOrder();

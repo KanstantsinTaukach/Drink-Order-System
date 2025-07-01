@@ -6,6 +6,8 @@
 
 void UOSStoreWidget::NativeOnInitialized() 
 {
+    Super::NativeOnInitialized();
+
     if (OpenMainMenuButton)
     {
         OpenMainMenuButton->OnClicked.AddDynamic(this, &UOSStoreWidget::OnOpenMainMenu);

@@ -1,7 +1,7 @@
 // Quick Drink Order System
 
 #include "MainMenu/UI/OSMainMenuHUD.h"
-#include "Blueprint/UserWidget.h"
+#include "MainMenu/UI/OSStoreWidget.h"
 
 void AOSMainMenuHUD::BeginPlay()
 {
@@ -9,10 +9,10 @@ void AOSMainMenuHUD::BeginPlay()
 
     if (StoreWidgetClass)
     {
-        const auto MenuWidget = CreateWidget<UUserWidget>(GetWorld(), StoreWidgetClass);
-        if (MenuWidget)
+        StoreWidget = CreateWidget<UOSStoreWidget>(GetWorld(), StoreWidgetClass);
+        if (StoreWidget)
         {
-            MenuWidget->AddToViewport();
+            StoreWidget->AddToViewport();
         }
     }
 }
