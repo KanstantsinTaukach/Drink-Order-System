@@ -43,7 +43,13 @@ void UOSOrderMenuWidget::NativeOnInitialized()
     }
 }
 
-void UOSOrderMenuWidget::OnOrder() {}
+void UOSOrderMenuWidget::OnOrder() 
+{
+    if (ParentSwitcher)
+    {
+        ParentSwitcher->SetActiveWidgetIndex(3);
+    }
+}
 
 void UOSOrderMenuWidget::OnBackToMenu()
 {
