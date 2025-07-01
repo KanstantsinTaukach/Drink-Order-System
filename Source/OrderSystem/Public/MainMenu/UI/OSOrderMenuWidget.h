@@ -35,6 +35,7 @@ protected:
     virtual void NativeOnInitialized() override;
 
 private:
+    UPROPERTY()
     TObjectPtr<UWidgetSwitcher> ParentSwitcher;
 
     UFUNCTION()
@@ -42,4 +43,7 @@ private:
 
     UFUNCTION()
     void OnBackToMenu();
+
+    UFUNCTION()
+    void OnSelectedDrinkChanged(FString SelectedItem, ESelectInfo::Type SelectionType);
 };

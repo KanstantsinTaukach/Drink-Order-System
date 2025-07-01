@@ -5,6 +5,7 @@
 #include "Components/ComboBoxString.h"
 #include "Components/Button.h"
 #include "Components/WidgetSwitcher.h"
+#include "OSCoreTypes.h"
 
 void UOSOrderMenuWidget::NativeOnInitialized()
 {
@@ -24,17 +25,57 @@ void UOSOrderMenuWidget::NativeOnInitialized()
     {
         ParentSwitcher = Switcher;
     }
+
+    if (SelectedDrinkComboBox)
+    {
+        SelectedDrinkComboBox->ClearOptions();
+
+        TArray<FString> DrinkNames = UOSCoreTypes::DrinkTypesOptions();
+        for (const FString& DrinkName : DrinkNames)
+        {
+            SelectedDrinkComboBox->AddOption(DrinkName);
+        }
+
+        SelectedDrinkComboBox->SetSelectedOption(DrinkNames[0]);
+        SelectedDrinkComboBox->OnSelectionChanged.AddDynamic(this, &UOSOrderMenuWidget::OnSelectedDrinkChanged);
+
+        OnSelectedDrinkChanged(DrinkNames[0], ESelectInfo::Direct);
+    }
 }
 
-void UOSOrderMenuWidget::OnOrder() 
-{
-
-}
+void UOSOrderMenuWidget::OnOrder() {}
 
 void UOSOrderMenuWidget::OnBackToMenu()
 {
     if (ParentSwitcher)
     {
         ParentSwitcher->SetActiveWidgetIndex(1);
+    }
+}
+
+void UOSOrderMenuWidget::OnSelectedDrinkChanged(FString SelectedItem, ESelectInfo::Type SelectionType)
+{
+    if (SelectionType == ESelectInfo::OnMouseClick)
+    {
+        EDrinkType DrinkType = EDrinkType::Tea;
+        for (const auto& Pair : UOSCoreTypes::GetDrinkTypes())
+        {
+            if (Pair.Value.Name == SelectedItem)
+            {
+                if (AddSugarCheckBox)
+                {
+                    AddSugarCheckBox->SetCheckedState(ECheckBoxState::Unchecked);
+                    AddSugarCheckBox->SetIsEnabled(Pair.Value.bAllowSugar);
+                }
+                if (AddMilkCheckBox)
+                {
+                    AddMilkCheckBox->SetCheckedState(ECheckBoxState::Unchecked);
+                    AddMilkCheckBox->SetIsEnabled(Pair.Value.bAllowMilk);
+                }
+
+                DrinkType = Pair.Key;
+                break;
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@ protected:
     virtual void NativeOnInitialized() override;
 
 private:
+    UPROPERTY()
     TObjectPtr<UWidgetSwitcher> ParentSwitcher;
 
     UFUNCTION()
