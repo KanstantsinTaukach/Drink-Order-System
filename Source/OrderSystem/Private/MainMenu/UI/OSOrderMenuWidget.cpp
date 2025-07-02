@@ -57,11 +57,11 @@ void UOSOrderMenuWidget::OnOrder()
     }
     else if (bHasSugar)
     {
-        Summary += TEXT(" with milk");
+        Summary += TEXT(" with sugar");
     }
     else if (bHasMilk)
     {
-        Summary += TEXT(" with sugar");
+        Summary += TEXT(" with milk");
     }
 
     OnOrderConfirmed.Broadcast(Summary);
